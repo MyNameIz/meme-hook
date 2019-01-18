@@ -1,30 +1,38 @@
-const easyvk            = require('easyvk');
+const { VKApi, ConsoleLogger, BotsLongPollUpdatesProvider }      = require('node-vk-sdk');
 
-const config        = require('../config/config');
+const config                                                     = require('../config/config');
 
-easyvk({
-    access_token : config.apiVK
-}).then(vk =>
+let api = new VKApi({
+    token : config.apiVK.userAccessToken
+})
+
+let bot_api = new VKApi({
+    lang   : 'ru',
+    token  : config.apiVK.bots_longpoll,
+    logger : new ConsoleLogger,
+});
+
+let updatesProvider = new BotsLongPollUpdatesProvider(bot_api, config.upload.vk.id);
+
+console.log('Wall cleaner initialized!');
+
+updatesProvider.getUpdates(updates =>
     {
-        const LPB = vk.bots.longpoll;
-        if(typeof(LPB)=="object") console.log('Wall cleaner initialized!');
-        LPB.connect({
-            forGetLongPollServer : {
-                need_pts : 0,
-                group_id : config.upload.vk.id,
-                lp_version : 2
-            },
-            forLongPollServer: {
-                wait : '10',
-            }
-        }).then(({connection}) => {
-            connection.on('wall_post_new', (post) => 
+        if(updates.length > 0)
+        updates.map(val =>
+            {
+                if(val.type == "wall_post_new")
                 {
-                    if (post.from_id != config.profile.id && post.from_id != post.owner_id)
-                        vk.call("wall.delete", { owner_id : post.owner_id, post_id : post.id })
-                        .then(res => console.log("Wall cleaned:", JSON.stringify(res.vkr)))
-                        .catch(error => console.error(error));
+                    let post = val.object;
+                    if(post.from_id!=post.owner_id&&post.from_id!=config.profile.id) 
+                    {
+                        api.wallDelete({ access_token : config.apiVK.userAccessToken, owner_id : post.owner_id, post_id : post.id })
+                        .catch(err => console.log(err))
+                        .then(res => console.log('New Post Deleted:',res));
+                        console.log('New post:', post.id, post.text);
+                    }
                 }
-            );
-        })
-    });
+            }
+        );
+    }
+);

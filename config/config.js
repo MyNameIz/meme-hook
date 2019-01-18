@@ -14,7 +14,10 @@ module.exports = {
         telegram : '@worldgutter',
         instagram : ''
     },
-    apiVK : '7b5b2d194a837b36b75c9bd3f8ecbf98386ae162d0b65ed2f1efee8b43dedfe2ccfed1b117211770f694c',
+    apiVK : {
+        bots_longpoll : 'a2b35ab3a5d6c4d3f01316a72b1276643cd970c0c44b09ebb4a8ca109142c0e46a247aebf8757451c3d6b',
+        userAccessToken : '2d42992ef5fee0e99817be59f87e311179383d1df7dd3e3a89b0692f4533b902c8a5a7364c48f1975e37a'
+    },
     apiTelegram : '681075129:AAH6_bX0ya9jrzM8ZlrqloYAilSIRnBsXpI',
     rootDir : path.join(__dirname, '../'),
     images  : 'images',

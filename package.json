@@ -18,6 +18,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.2",
     "node-telegram-bot-api": "^0.30.0",
+    "node-vk-sdk": "^1.0.5",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "tough-cookie": "^2.5.0",

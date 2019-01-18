@@ -237,7 +237,7 @@ module.exports.Uploader = class Uploader {
                         else
                         {
                             let rx = new RegExp(resp.mid+'_[0-9]*','g');
-                            let attachID = response.body?response.body.match(rx)[0]:null;
+                            let attachID = response.body.match(rx)?response.body.match(rx)[0]:null;
                             if (attachID) resolve(attachID);
                             else reject("No attacment ID");
                         }

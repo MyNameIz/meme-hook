@@ -33,6 +33,7 @@ Promise.all(promises)
 })
 .then(res => 
 {
+    // https://oauth.vk.com/authorize?client_id=6824831&redirect_uri=https://vk.com/&scope=wall&response_type=token&v=5.92&state=fucku
     let cookies = res[1];
     lookLikeDesktop('https://vk.com/', config.profile.id)
     let sources = res.map((value) => {return value.url;})
