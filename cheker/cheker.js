@@ -175,7 +175,7 @@ class Cheker extends EventEmitter{
 
     async MemeDetected(ref, post)
     {
-        downloadMeme(post, this.cookie)
+        await downloadMeme(post, this.cookie)
             .catch(err =>
                 {
                     console.error(err);
