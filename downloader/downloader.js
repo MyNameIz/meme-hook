@@ -80,7 +80,7 @@ async function getPostMemes(html)
             let imgURL = [];
             $('div.wi_body').find('div.thumb_map_img').map((index,el) => 
                 {
-                    imgURL.push($(el).attr('data-src_big').split('|')[0]);
+                    if ( $(el).attr('data-src_big') ) imgURL.push($(el).attr('data-src_big').split('|')[0]);
                 }
             );
             if(imgURL.length > 0)

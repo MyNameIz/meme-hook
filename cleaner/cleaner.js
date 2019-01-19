@@ -18,7 +18,7 @@ console.log('Wall cleaner initialized!');
 
 updatesProvider.getUpdates(updates =>
     {
-        if(updates.length > 0)
+        if(updates&&updates.length&&updates.length > 0)
         updates.map(val =>
             {
                 if(val.type == "wall_post_new")
