@@ -18,8 +18,7 @@ const comp_auth     = require('./auth/comp_auth');
 const lookLikeDesktop = require('./auth/desktop_online');
 
 const db = config.db;
-// const dburi = `mongodb://${db.user}:${db.psw}@${db.host}:${db.port}/${db.db}`;
-const dburi = `mongodb://${db.user}:${db.psw}@ds157064.mlab.com:57064/memehook`;
+const dburi = `mongodb://${db.user}:${db.psw}@${db.host}:${db.port}/${db.db}`;
 
 let promises = [
     mongoose.connect(dburi, {useNewUrlParser : true}),
