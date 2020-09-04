@@ -15,7 +15,7 @@
     "cheerio": "^1.0.0-rc.2",
     "easyvk": "^2.1.2",
     "mongo": "^0.1.0",
-    "mongodb": "^3.1.10",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.4.2",
     "node-telegram-bot-api": "^0.30.0",
     "node-vk-sdk": "^1.0.5",
